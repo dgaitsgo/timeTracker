@@ -29,6 +29,6 @@ Dashboard
 
 ### Thanks To:
 
-[Google Icons](https://material.io/icons/)
-[Materialize](http://materializecss.com/)
-[React](https://facebook.github.io/react/)
+[Google Icons](https://material.io/icons/)<br />
+[Materialize](http://materializecss.com/)<br />
+[React](https://facebook.github.io/react/)<br />
