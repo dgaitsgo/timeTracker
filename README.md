@@ -2,7 +2,7 @@
 Track your time with this minimalist React task app
 
 ### Motivation 
-I built this tool to help me accurately allot time to tasks. The app tracks the time it takes to complete a task and your prediction of how much time it'll take in a really refined UI.
+I built this tool to help me accurately allot time to tasks. The app tracks the time it takes to complete a task and your prediction of how much time you thought it would take you in a really refined UI.
 
 ### To Do
 
