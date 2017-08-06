@@ -28,6 +28,7 @@ Dashboard
 - [ ] which tags are complete most often on time, which ones not
 
 ### Thanks To:
-[Google Icons] (https://material.io/icons/)
-[Materialize] (http://materializecss.com/)
-[React] (https://facebook.github.io/react/)
+
+[Google Icons](https://material.io/icons/)
+[Materialize](http://materializecss.com/)
+[React](https://facebook.github.io/react/)
