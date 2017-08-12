@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import '../node_modules/materialize-css/dist/css/materialize.css'
 
+// Why is there so much component in this file?
+// One component per file
+
+// Why using the function keyword instead of an arrow funcition () => ?
 function formatTime(totalSeconds) {
   const minutes = Math.floor(totalSeconds / 60)
   const seconds = totalSeconds % 60
@@ -46,6 +50,7 @@ class NewTask extends Component {
       warnSecs
     } = this.state
 
+    // nice indent
       if (taskName.length > 0 &&
           (shouldMins.length > 0 || shouldSecs.length > 0) &&
           (warnMins.length > 0 ||   warnSecs.length > 0)) {
@@ -68,6 +73,9 @@ class NewTask extends Component {
   updateTaskName = ({ target : { value } }) => this.setState({taskName : value})
 
   updateTime = () => {
+    // When you want to setState using the actual state, it's
+    // good to pass a function to setState instead of an object
+    // https://medium.freecodecamp.org/functional-setstate-is-the-future-of-react-374f30401b6b
     const elapsedTime = this.state.elapsedTime + 1
     this.setState({elapsedTime})
   }
@@ -143,6 +151,10 @@ class NewTask extends Component {
 
           <div className="row">
 
+          {/* nice ident +
+            This is way too repetitive. You should wrap this
+            inside a component
+          */}
            <div className={"input-field col s4"}>
              <input disabled={inCourse} value={taskName} onChange={this.updateTaskName} id="taskName" type="text" className="validate"></input>
              <label className="active purple-text text-darken-4" htmlFor="taskName">Task Name</label>
@@ -177,7 +189,47 @@ class NewTask extends Component {
     )
   }
 }
+// Why using a class?
+// This component doesn't use state or lifecycle React method
+// You can replace it by a simple function that returns HTML
+// like this
+/*
+const Log = ({ tasks }) => (
+  <table>
+    <thead>
+      <tr>
+        <th>Task Name</th>
+        <th>Took</th>
+        <th>Thought it would take</th>
+        <th>Off by</th>
+      </tr>
+    </thead>
 
+    <tbody>
+      {tasks.map( (t, i) => {
+        const err = t.shouldTake - t.elapsedTime
+        var className, sign;
+        if (err < 0) {
+          className = 'pink-text text-darken-1'
+          sign = '-'
+        } else {
+          className = 'green-text'
+          sign = '+'
+        }
+
+        return (
+          <tr key={i}>
+            <td>{t.taskName}</td>
+            <td>{formatTime(t.elapsedTime)}</td>
+            <td>{formatTime(t.shouldTake)}</td>
+            <td className={className}>{sign}{formatTime(Math.abs(err))}</td>
+          </tr>
+        )
+      })}
+    </tbody>
+  </table>
+)
+*/
 class Log extends Component {
 
   render () {
@@ -196,6 +248,9 @@ class Log extends Component {
 
         <tbody>
           {tasks.map( (t, i) => {
+            // There is too much logic here
+            // maybe you should move this logic away
+            // to stay focus on the view here
             const err = t.shouldTake - t.elapsedTime
             var className, sign;
             if (err < 0) {
@@ -227,6 +282,12 @@ class App extends Component {
   }
 
   newTask = (task) => {
+    // Here, you can use the spread operator coupled
+    // with a function instead of the concat.
+    // like this:
+    /*
+    this.setState((state) => ({ tasks: [...state.tasks, task] }))
+    */
     const { tasks } = this.state
     this.setState({tasks : tasks.concat(task)}, this.check)
   }
